@@ -4,7 +4,7 @@
   "description": "Backend do projeto TKS",
   "main": "src/server.js",
   "scripts": {
-    "dev": "nodemon src/server.js",
+    "dev": "nodemon --watch src --ext js,json --ignore uploads --ignore test src/server.js",
     "start": "node src/server.js",
     "test": "node --test"
   },
