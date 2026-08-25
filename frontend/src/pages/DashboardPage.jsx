@@ -2819,22 +2819,55 @@ function DashboardPage() {
             {leadMessage && <div className="dashboard-message success-message"><span>✓</span>{leadMessage}</div>}
 
             {loadingLeads ? <div className="empty-state"><div className="loading-spinner"></div><h3>Carregando leads...</h3></div> : leads.length === 0 ? <div className="empty-state"><div className="empty-icon">◌</div><h3>Nenhum lead encontrado</h3><p>Novos contatos do site aparecerão aqui.</p></div> : (
-              <div className="leads-list">
-                {leads.map((lead) => (
-                  <article className="lead-item" key={lead.id}>
-                    <div><span className="lead-date">{lead.created_at ? new Date(lead.created_at).toLocaleDateString('pt-BR') : ''}</span><h3>{lead.name}</h3><a href={`mailto:${lead.email}`}>{lead.email}</a></div>
-                    <div className="lead-content"><strong>{lead.subject}</strong><p>{lead.message}</p><small>{[lead.service, lead.timeline, lead.budget].filter(Boolean).join(' · ') || 'Sem informações adicionais'}</small></div>
-                    <div className="lead-controls">
-                      <select className="user-role-select" value={lead.status} onChange={(event) => handleLeadStatus(lead.id, event.target.value, { assigned_to: lead.assigned_to, follow_up_at: lead.follow_up_at, notes: lead.notes })} aria-label={`Status de ${lead.name}`}><option value="new">Novo</option><option value="in_progress">Em atendimento</option><option value="proposal">Proposta enviada</option><option value="won">Fechado</option><option value="lost">Perdido</option></select>
-                      <select className="lead-assignee" value={lead.assigned_to || ''} onChange={(event) => handleLeadStatus(lead.id, lead.status, { assigned_to: event.target.value || null, follow_up_at: lead.follow_up_at, notes: lead.notes })} aria-label={`Responsável por ${lead.name}`}>
-                        <option value="">Sem responsável</option>
-                        {users.map((teamUser) => <option key={teamUser.id} value={teamUser.id}>{teamUser.name}</option>)}
-                      </select>
-                      <input className="lead-follow-up" type="date" value={lead.follow_up_at ? String(lead.follow_up_at).slice(0, 10) : ''} onChange={(event) => handleLeadStatus(lead.id, lead.status, { assigned_to: lead.assigned_to, follow_up_at: event.target.value || null, notes: lead.notes })} aria-label={`Follow-up de ${lead.name}`} />
-                      <input className="lead-notes" type="text" value={lead.notes || ''} placeholder="Observação" onChange={(event) => handleLeadStatus(lead.id, lead.status, { assigned_to: lead.assigned_to, follow_up_at: lead.follow_up_at, notes: event.target.value })} aria-label={`Observação de ${lead.name}`} />
-                    </div>
-                  </article>
-                ))}
+              <div className="lead-pipeline">
+                {[
+                  ['new', 'Novos'],
+                  ['in_progress', 'Em atendimento'],
+                  ['proposal', 'Propostas'],
+                  ['won', 'Fechados'],
+                  ['lost', 'Perdidos'],
+                ].map(([status, label]) => {
+                  const columnLeads = leads.filter((lead) => lead.status === status)
+
+                  return (
+                    <section className={`lead-column lead-column-${status}`} key={status}>
+                      <header className="lead-column-header">
+                        <div>
+                          <span>{label}</span>
+                          <strong>{columnLeads.length}</strong>
+                        </div>
+                        <span className="lead-column-dot" aria-hidden="true" />
+                      </header>
+
+                      <div className="lead-column-list">
+                        {columnLeads.length === 0 ? (
+                          <div className="lead-column-empty">Nenhum lead nesta etapa</div>
+                        ) : columnLeads.map((lead) => (
+                          <article className="lead-card" key={lead.id}>
+                            <div className="lead-card-header">
+                              <span className="lead-date">{lead.created_at ? new Date(lead.created_at).toLocaleDateString('pt-BR') : ''}</span>
+                              <span className="lead-card-id">#{lead.id}</span>
+                            </div>
+                            <h3>{lead.name}</h3>
+                            <a href={`mailto:${lead.email}`}>{lead.email}</a>
+                            <div className="lead-card-subject">{lead.subject}</div>
+                            <p>{lead.message}</p>
+                            <small>{[lead.service, lead.timeline, lead.budget].filter(Boolean).join(' · ') || 'Sem informações adicionais'}</small>
+                            <div className="lead-controls">
+                              <select className="user-role-select" value={lead.status} onChange={(event) => handleLeadStatus(lead.id, event.target.value, { assigned_to: lead.assigned_to, follow_up_at: lead.follow_up_at, notes: lead.notes })} aria-label={`Status de ${lead.name}`}><option value="new">Novo</option><option value="in_progress">Em atendimento</option><option value="proposal">Proposta enviada</option><option value="won">Fechado</option><option value="lost">Perdido</option></select>
+                              <select className="lead-assignee" value={lead.assigned_to || ''} onChange={(event) => handleLeadStatus(lead.id, lead.status, { assigned_to: event.target.value || null, follow_up_at: lead.follow_up_at, notes: lead.notes })} aria-label={`Responsável por ${lead.name}`}>
+                                <option value="">Sem responsável</option>
+                                {users.map((teamUser) => <option key={teamUser.id} value={teamUser.id}>{teamUser.name}</option>)}
+                              </select>
+                              <input className="lead-follow-up" type="date" value={lead.follow_up_at ? String(lead.follow_up_at).slice(0, 10) : ''} onChange={(event) => handleLeadStatus(lead.id, lead.status, { assigned_to: lead.assigned_to, follow_up_at: event.target.value || null, notes: lead.notes })} aria-label={`Follow-up de ${lead.name}`} />
+                              <input className="lead-notes" type="text" value={lead.notes || ''} placeholder="Observação" onChange={(event) => handleLeadStatus(lead.id, lead.status, { assigned_to: lead.assigned_to, follow_up_at: lead.follow_up_at, notes: event.target.value })} aria-label={`Observação de ${lead.name}`} />
+                            </div>
+                          </article>
+                        ))}
+                      </div>
+                    </section>
+                  )
+                })}
               </div>
             )}
           </div>
