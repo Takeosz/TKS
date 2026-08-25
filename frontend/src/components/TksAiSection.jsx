@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { API_URL } from '../config/api'
 
 const prompts = [
@@ -71,8 +71,6 @@ function TksAiSection() {
   useEffect(() => {
     localStorage.setItem('tks-ai-chat', JSON.stringify(messages))
   }, [messages])
-
-  const totalMessages = useMemo(() => messages.length, [messages])
 
   const sendMessage = async (value) => {
     const trimmed = value.trim()

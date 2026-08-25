@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
       return savedUser
         ? JSON.parse(savedUser)
         : null
-    } catch (error) {
+    } catch {
       localStorage.removeItem('user')
       return null
     }

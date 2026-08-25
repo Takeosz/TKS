@@ -20,6 +20,14 @@ function Navbar() {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [])
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [menuOpen])
+
   function isActive(path, hash = '') {
     if (path === '/' && location.pathname !== '/') {
       return false

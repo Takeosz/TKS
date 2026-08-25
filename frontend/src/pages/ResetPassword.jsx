@@ -9,16 +9,12 @@ function ResetPassword() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-
   const navigate = useNavigate()
 
   const handleResetPassword = async (e) => {
     e.preventDefault()
 
     setMessage('')
-    setSuccess(false)
-
     if (newPassword !== confirmPassword) {
       setMessage('As senhas não coincidem.')
       return
@@ -56,7 +52,6 @@ function ResetPassword() {
         )
       }
 
-      setSuccess(true)
       setMessage('Senha alterada com sucesso!')
 
       setTimeout(() => {
