@@ -29,7 +29,7 @@ const app = express()
 
 const FRONTEND_URL =
   process.env.FRONTEND_URL ||
-  'http://localhost:5173'
+  'https://tks-psi.vercel.app'
 
 const PORT =
   process.env.PORT || 3000
@@ -39,6 +39,8 @@ const allowedOrigins = [
   'http://localhost:5174',
   'http://127.0.0.1:5173',
   'http://127.0.0.1:5174',
+  'https://tks-psi.vercel.app',
+  'https://www.tks-psi.vercel.app',
   FRONTEND_URL,
 ]
 
@@ -49,7 +51,13 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin) || /^http:\/\/localhost:\d+$/.test(origin) || /^http:\/\/127\.0\.0\.1:\d+$/.test(origin)) {
+      if (
+        !origin ||
+        allowedOrigins.includes(origin) ||
+        /^https:\/\/.*\.vercel\.app$/.test(origin) ||
+        /^http:\/\/localhost:\d+$/.test(origin) ||
+        /^http:\/\/127\.0\.0\.1:\d+$/.test(origin)
+      ) {
         callback(null, true)
         return
       }

@@ -33,8 +33,14 @@ function ResetPassword() {
     setLoading(true)
 
     try {
+      const apiUrl =
+        import.meta.env.VITE_API_URL ||
+        (window.location.hostname === 'localhost'
+          ? 'http://localhost:3000'
+          : 'https://tks-api.onrender.com')
+
       const response = await fetch(
-        'http://localhost:3000/api/auth/reset-password',
+        `${apiUrl}/api/auth/reset-password`,
         {
           method: 'POST',
           headers: {

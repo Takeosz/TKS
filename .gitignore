@@ -30,3 +30,5 @@ Thumbs.db
 
 # Cobertura/testes
 coverage/
+.vercel
+.env*
