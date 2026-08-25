@@ -36,6 +36,9 @@ jobs:
       - name: Check backend syntax
         run: node --check backend/src/server.js
 
+      - name: Test backend
+        run: npm --prefix backend test
+
       - name: Lint frontend
         run: npm --prefix frontend run lint
 

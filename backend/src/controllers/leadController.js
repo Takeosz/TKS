@@ -1,6 +1,5 @@
 const pool = require('../database/connection')
-
-const statuses = ['new', 'in_progress', 'proposal', 'won', 'lost']
+const { statuses } = require('../services/leadRules')
 
 const addLog = (userId, action) =>
   pool.query('INSERT INTO activity_logs (user_id, action) VALUES ($1, $2)', [userId, action])
@@ -35,6 +34,30 @@ const getLeads = async (req, res) => {
   }
 }
 
+const getLeadHistory = async (req, res) => {
+  const id = Number(req.params.id)
+
+  if (!id || Number.isNaN(id)) {
+    return res.status(400).json({ success: false, message: 'Lead inválido.' })
+  }
+
+  try {
+    const result = await pool.query(
+      `SELECT lead_history.*, users.name AS user_name
+       FROM lead_history
+       LEFT JOIN users ON users.id = lead_history.user_id
+       WHERE lead_id = $1
+       ORDER BY created_at DESC`,
+      [id]
+    )
+
+    return res.json({ success: true, history: result.rows })
+  } catch (error) {
+    console.error('Erro ao listar histórico do lead:', error)
+    return res.status(500).json({ success: false, message: 'Erro interno do servidor.' })
+  }
+}
+
 const updateLead = async (req, res) => {
   const id = Number(req.params.id)
   const status = String(req.body.status || '').trim()
@@ -51,6 +74,11 @@ const updateLead = async (req, res) => {
       [status, assignedTo, followUpAt, notes, id]
     )
     if (!result.rows[0]) return res.status(404).json({ success: false, message: 'Lead não encontrado.' })
+    await pool.query(
+      `INSERT INTO lead_history (lead_id, user_id, status, assigned_to, notes)
+       VALUES ($1, $2, $3, $4, $5)`,
+      [id, req.user.id, status, assignedTo, notes]
+    )
     await addLog(req.user.id, `Atualizou o lead #${id} para ${status}`)
     return res.json({ success: true, lead: result.rows[0] })
   } catch (error) {
@@ -78,4 +106,4 @@ const getDashboardMetrics = async (req, res) => {
   }
 }
 
-module.exports = { getLeads, updateLead, getDashboardMetrics }
+module.exports = { getLeads, getLeadHistory, updateLead, getDashboardMetrics }

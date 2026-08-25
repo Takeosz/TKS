@@ -5,7 +5,7 @@ services:
     plan: free
     buildCommand: npm --prefix backend install
     startCommand: npm --prefix backend start
-    healthCheckPath: /
+    healthCheckPath: /health
     envVars:
       - key: DATABASE_URL
         sync: false

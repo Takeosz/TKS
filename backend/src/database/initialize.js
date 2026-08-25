@@ -107,6 +107,18 @@ const initializeDatabase = async () => {
       created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
     )
   `)
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS lead_history (
+      id SERIAL PRIMARY KEY,
+      lead_id INTEGER NOT NULL REFERENCES leads(id) ON DELETE CASCADE,
+      user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+      status VARCHAR(30) NOT NULL,
+      assigned_to INTEGER REFERENCES users(id) ON DELETE SET NULL,
+      notes TEXT,
+      created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    )
+  `)
 }
 
 module.exports = initializeDatabase

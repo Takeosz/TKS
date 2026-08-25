@@ -920,6 +920,50 @@ textarea {
   -webkit-line-clamp: 3;
 }
 
+.lead-history-toggle {
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--dashboard-accent);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.lead-history-toggle:hover {
+  text-decoration: underline;
+}
+
+.lead-history {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border-left: 2px solid rgba(123, 220, 240, 0.25);
+  background: rgba(123, 220, 240, 0.04);
+}
+
+.lead-history > span {
+  color: var(--dashboard-muted);
+  font-size: 11px;
+}
+
+.lead-history-item {
+  display: grid;
+  gap: 2px;
+}
+
+.lead-history-item strong {
+  color: var(--dashboard-text);
+  font-size: 11px;
+  text-transform: capitalize;
+}
+
+.lead-history-item span {
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 10px;
+}
+
 .lead-card .lead-controls {
   display: grid;
   gap: 7px;

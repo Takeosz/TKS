@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { io } from 'socket.io-client'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../context/useAuth'
 import { API_URL, SOCKET_URL } from '../config/api'
 import './DashboardPage.css'
 
@@ -72,6 +72,9 @@ function DashboardPage() {
   const [userManagementMessage, setUserManagementMessage] = useState('')
 
   const [leads, setLeads] = useState([])
+  const [expandedLeadId, setExpandedLeadId] = useState(null)
+  const [leadHistory, setLeadHistory] = useState({})
+  const [loadingLeadHistory, setLoadingLeadHistory] = useState(null)
   const [dashboardMetrics, setDashboardMetrics] = useState(null)
   const [lastDashboardUpdate, setLastDashboardUpdate] = useState(null)
   const [refreshingDashboard, setRefreshingDashboard] = useState(false)
@@ -911,6 +914,39 @@ function DashboardPage() {
     } catch (error) {
       console.error('Erro ao atualizar lead:', error)
       setLeadMessage('Não foi possível conectar ao servidor.')
+    }
+  }
+
+  const toggleLeadHistory = async (leadId) => {
+    if (expandedLeadId === leadId) {
+      setExpandedLeadId(null)
+      return
+    }
+
+    setExpandedLeadId(leadId)
+
+    if (leadHistory[leadId]) {
+      return
+    }
+
+    try {
+      setLoadingLeadHistory(leadId)
+      const response = await fetch(`${API_URL}/leads/${leadId}/history`, {
+        headers: getAuthHeaders(),
+      })
+      const data = await parseResponse(response)
+
+      if (!response.ok || !data.success) {
+        setLeadMessage(data.message || 'Não foi possível carregar o histórico.')
+        return
+      }
+
+      setLeadHistory((previous) => ({ ...previous, [leadId]: data.history || [] }))
+    } catch (error) {
+      console.error('Erro ao buscar histórico do lead:', error)
+      setLeadMessage('Não foi possível conectar ao servidor.')
+    } finally {
+      setLoadingLeadHistory(null)
     }
   }
 
@@ -2853,6 +2889,23 @@ function DashboardPage() {
                             <div className="lead-card-subject">{lead.subject}</div>
                             <p>{lead.message}</p>
                             <small>{[lead.service, lead.timeline, lead.budget].filter(Boolean).join(' · ') || 'Sem informações adicionais'}</small>
+                            <button className="lead-history-toggle" type="button" onClick={() => toggleLeadHistory(lead.id)}>
+                              {expandedLeadId === lead.id ? 'Ocultar histórico' : 'Ver histórico'}
+                            </button>
+                            {expandedLeadId === lead.id && (
+                              <div className="lead-history" aria-live="polite">
+                                {loadingLeadHistory === lead.id ? (
+                                  <span>Carregando histórico...</span>
+                                ) : (leadHistory[lead.id] || []).length === 0 ? (
+                                  <span>Nenhuma alteração registrada.</span>
+                                ) : leadHistory[lead.id].map((entry) => (
+                                  <div className="lead-history-item" key={entry.id}>
+                                    <strong>{entry.status}</strong>
+                                    <span>{entry.user_name || 'Sistema'} · {new Date(entry.created_at).toLocaleString('pt-BR')}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
                             <div className="lead-controls">
                               <select className="user-role-select" value={lead.status} onChange={(event) => handleLeadStatus(lead.id, event.target.value, { assigned_to: lead.assigned_to, follow_up_at: lead.follow_up_at, notes: lead.notes })} aria-label={`Status de ${lead.name}`}><option value="new">Novo</option><option value="in_progress">Em atendimento</option><option value="proposal">Proposta enviada</option><option value="won">Fechado</option><option value="lost">Perdido</option></select>
                               <select className="lead-assignee" value={lead.assigned_to || ''} onChange={(event) => handleLeadStatus(lead.id, lead.status, { assigned_to: event.target.value || null, follow_up_at: lead.follow_up_at, notes: lead.notes })} aria-label={`Responsável por ${lead.name}`}>
