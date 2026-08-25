@@ -13,24 +13,25 @@ import Faq from '../components/Faq'
 import FinalCta from '../components/FinalCta'
 import Contact from '../components/Contact'
 import WhatsAppButton from '../components/WhatsAppButton'
+import RevealOnScroll from '../components/RevealOnScroll'
 
 function Home() {
   return (
     <>
       <Hero />
-      <Proof />
-      <ImpactStats />
-      <Services />
-      <About />
-      <WhyChooseUs />
-      <Process />
-      <TksAiSection />
-      <CaseStudies />
-      <Projects />
-      <Testimonials />
-      <Faq />
-      <FinalCta />
-      <Contact />
+      <RevealOnScroll><Proof /></RevealOnScroll>
+      <RevealOnScroll><ImpactStats /></RevealOnScroll>
+      <RevealOnScroll><Services /></RevealOnScroll>
+      <RevealOnScroll><About /></RevealOnScroll>
+      <RevealOnScroll><WhyChooseUs /></RevealOnScroll>
+      <RevealOnScroll><Process /></RevealOnScroll>
+      <RevealOnScroll><TksAiSection /></RevealOnScroll>
+      <RevealOnScroll><CaseStudies /></RevealOnScroll>
+      <RevealOnScroll><Projects /></RevealOnScroll>
+      <RevealOnScroll><Testimonials /></RevealOnScroll>
+      <RevealOnScroll><Faq /></RevealOnScroll>
+      <RevealOnScroll><FinalCta /></RevealOnScroll>
+      <RevealOnScroll><Contact /></RevealOnScroll>
       <WhatsAppButton />
     </>
   )

@@ -419,7 +419,19 @@ select:focus-visible {
   opacity: 0.42;
 
   filter: grayscale(100%) contrast(1.18) saturate(0.5);
-  transform: scale(1.08);
+  transform: translateY(calc(var(--tks-scroll-y, 0px) * 0.04)) scale(1.08);
+  transition: transform 0.15s linear;
+}
+
+.reveal-section {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.reveal-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hero-overlay {
@@ -2297,6 +2309,11 @@ select:focus-visible {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .reveal-section {
+    opacity: 1;
+    transform: none;
   }
 }
 

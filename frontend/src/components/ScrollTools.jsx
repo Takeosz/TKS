@@ -10,11 +10,15 @@ function ScrollTools() {
       const nextProgress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0
       setProgress(Math.min(100, Math.max(0, nextProgress)))
       setShowTop(window.scrollY > 500)
+      document.documentElement.style.setProperty('--tks-scroll-y', `${window.scrollY}px`)
     }
 
     updateScroll()
     window.addEventListener('scroll', updateScroll, { passive: true })
-    return () => window.removeEventListener('scroll', updateScroll)
+    return () => {
+      window.removeEventListener('scroll', updateScroll)
+      document.documentElement.style.removeProperty('--tks-scroll-y')
+    }
   }, [])
 
   return (
