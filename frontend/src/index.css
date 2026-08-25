@@ -11,6 +11,8 @@
   --tks-muted: #929baa;
   --tks-blue: #6f8cff;
   --tks-cyan: #77d8e8;
+  --tks-heading: "Aptos Display", "Aptos", "Segoe UI", sans-serif;
+  --tks-body: "Aptos", "Segoe UI", sans-serif;
 }
 
 * {
@@ -24,12 +26,21 @@ html {
 }
 
 body {
-  font-family: "Aptos", "Segoe UI", sans-serif;
+  font-family: var(--tks-body);
   background:
     radial-gradient(circle at top, rgba(255, 255, 255, 0.05), transparent 38%),
     linear-gradient(180deg, #050505 0%, #0a0a0d 100%);
   color: #fff;
   line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--tks-heading);
 }
 
 body,
@@ -1650,6 +1661,7 @@ select:focus-visible {
 .services-section {
   padding: 120px 8%;
   border-top: 1px solid #1c1c1c;
+  background: linear-gradient(180deg, rgba(13, 18, 26, 0.72), rgba(5, 7, 11, 0.98));
 }
 
 .services-header {
@@ -1705,6 +1717,11 @@ select:focus-visible {
     border-color 0.35s ease,
     box-shadow 0.35s ease,
     background 0.35s ease;
+}
+
+.service-card:focus-within {
+  border-color: rgba(119, 216, 232, 0.55);
+  box-shadow: 0 0 0 3px rgba(119, 216, 232, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .service-card::before {
@@ -1937,6 +1954,7 @@ select:focus-visible {
 .projects-section {
   padding: 128px 8%;
   border-top: 1px solid #1c1c1c;
+  background: linear-gradient(180deg, rgba(5, 7, 11, 0.98), rgba(12, 17, 25, 0.88));
 }
 
 .projects-grid {
@@ -2172,7 +2190,7 @@ select:focus-visible {
 }
 
 .project-card:hover .project-arrow {
-  transform: none;
+  transform: translate(4px, -4px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2548,6 +2566,14 @@ select:focus-visible {
   transform: translateY(-3px);
 
   background: linear-gradient(135deg, #ffffff 0%, #cfd9e6 100%);
+}
+
+.service-link:focus-visible,
+.project-link:focus-visible,
+.whatsapp-button:focus-visible,
+.contact-form button:focus-visible {
+  outline: 2px solid var(--tks-cyan);
+  outline-offset: 4px;
 }
 
 /* =========================
