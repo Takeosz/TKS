@@ -11,6 +11,8 @@ function Footer() {
         <a href="/servicos">Serviços</a>
         <a href="/projetos">Projetos</a>
         <a href="/contato">Contato</a>
+        <a href="/privacidade">Privacidade</a>
+        <a href="/termos">Termos</a>
       </div>
 
       <div className="footer-contact">

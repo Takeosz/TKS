@@ -19,6 +19,9 @@ import RegisterPage from './pages/RegisterPage'
 import ResetPassword from './pages/ResetPassword'
 import DashboardPage from './pages/DashboardPage'
 import ClientAreaPage from './pages/ClientAreaPage'
+import PrivacyPage from './pages/PrivacyPage'
+import TermsPage from './pages/TermsPage'
+import ScrollTools from './components/ScrollTools'
 
 function App() {
   const location = useLocation()
@@ -57,6 +60,7 @@ function App() {
 
   return (
     <>
+      <ScrollTools />
       <Routes>
 
         {/* SITE PÚBLICO */}
@@ -137,6 +141,9 @@ function App() {
           </>
         }
       />
+
+      <Route path="/privacidade" element={<PrivacyPage />} />
+      <Route path="/termos" element={<TermsPage />} />
 
       <Route
         path="/processo"

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 import { API_URL } from '../config/api'
+import Breadcrumbs from '../components/Breadcrumbs'
 
 function ProjectDetailPage() {
   const { id } = useParams()
@@ -39,6 +40,7 @@ function ProjectDetailPage() {
   return (
     <main className="page detail-page">
       <div className="detail-shell">
+        <Breadcrumbs current={project?.title || 'Projeto'} />
         <Link className="back-link" to="/projetos">← Voltar para projetos</Link>
 
         {loading && <div className="detail-state">Carregando projeto...</div>}

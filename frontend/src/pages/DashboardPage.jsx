@@ -1564,6 +1564,7 @@ function DashboardPage() {
   // CARREGAR
   // =========================
 
+  // A carga inicial ocorre somente quando a sessão muda para evitar requisições repetidas.
   useEffect(() => {
     if (!token) {
       return
@@ -1574,7 +1575,7 @@ function DashboardPage() {
     fetchMessages()
     fetchUsers()
     fetchDashboardMetrics()
-  }, [token])
+  }, [token]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // =========================
   // ALTERAR SEÇÃO

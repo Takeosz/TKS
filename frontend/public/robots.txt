@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tks-psi.vercel.app/sitemap.xml

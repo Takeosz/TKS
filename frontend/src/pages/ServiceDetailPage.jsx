@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 import { API_URL } from '../config/api'
+import Breadcrumbs from '../components/Breadcrumbs'
 
 function ServiceDetailPage() {
   const { id } = useParams()
@@ -39,6 +40,7 @@ function ServiceDetailPage() {
   return (
     <main className="page detail-page">
       <div className="detail-shell">
+        <Breadcrumbs current={service?.title || 'Serviço'} />
         <Link className="back-link" to="/servicos">← Voltar para serviços</Link>
 
         {loading && <div className="detail-state">Carregando serviço...</div>}

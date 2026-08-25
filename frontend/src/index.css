@@ -71,6 +71,102 @@ img {
   background: transparent;
 }
 
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1100;
+  height: 2px;
+  background: var(--tks-cyan);
+  box-shadow: 0 0 12px rgba(119, 216, 232, 0.7);
+  pointer-events: none;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(119, 216, 232, 0.3);
+  border-radius: 50%;
+  background: rgba(7, 12, 18, 0.86);
+  color: var(--tks-cyan);
+  cursor: pointer;
+}
+
+.back-to-top:hover {
+  background: rgba(119, 216, 232, 0.12);
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  color: #8c9bad;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.breadcrumbs a:hover {
+  color: var(--tks-cyan);
+}
+
+.legal-page {
+  padding: 132px 8% 100px;
+  background: linear-gradient(180deg, #05070b 0%, #0b1018 100%);
+}
+
+.legal-shell {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.legal-kicker {
+  color: var(--tks-cyan);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.legal-shell h1 {
+  margin: 18px 0 22px;
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1;
+}
+
+.legal-lead {
+  max-width: 700px;
+  margin-bottom: 58px;
+  color: #b6c3d7;
+  font-size: 19px;
+}
+
+.legal-shell section {
+  padding: 28px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.legal-shell section h2 {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.legal-shell section p {
+  color: #9eacbf;
+  line-height: 1.8;
+}
+
+.legal-shell section a {
+  color: var(--tks-cyan);
+}
+
 ::-webkit-scrollbar {
   width: 9px;
 }
@@ -3152,6 +3248,19 @@ select:focus-visible {
 
   .hero-status {
     line-height: 1.5;
+  }
+
+  .back-to-top {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .legal-page {
+    padding: 100px 6% 70px;
+  }
+
+  .legal-lead {
+    font-size: 16px;
   }
 
   .service-card {
