@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 function Navbar() {
@@ -8,6 +8,17 @@ function Navbar() {
   function closeMenu() {
     setMenuOpen(false)
   }
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        closeMenu()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   function isActive(path, hash = '') {
     if (path === '/' && location.pathname !== '/') {
@@ -60,8 +71,9 @@ function Navbar() {
           menuOpen ? 'active' : ''
         }`}
         onClick={() => setMenuOpen(!menuOpen)}
-        aria-label="Abrir menu"
+        aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
         aria-expanded={menuOpen}
+        aria-controls="mobile-navigation"
       >
         <span></span>
         <span></span>
@@ -69,6 +81,7 @@ function Navbar() {
       </button>
 
       <nav
+        id="mobile-navigation"
         className={`mobile-menu ${
           menuOpen ? 'open' : ''
         }`}

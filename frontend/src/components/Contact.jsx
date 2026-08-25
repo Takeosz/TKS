@@ -160,13 +160,15 @@ function Contact({ variant = 'section' }) {
             type="text"
             name="name"
             placeholder="Seu nome"
+            aria-label="Seu nome"
+            autoComplete="name"
             value={formData.name}
             onChange={handleChange}
             required
           />
 
           <div className="contact-form-row">
-            <select name="service" value={formData.service} onChange={handleChange}>
+            <select name="service" aria-label="Serviço de interesse" value={formData.service} onChange={handleChange}>
               <option value="">Serviço de interesse</option>
               <option value="Desenvolvimento">Desenvolvimento</option>
               <option value="Cibersegurança">Cibersegurança</option>
@@ -174,7 +176,7 @@ function Contact({ variant = 'section' }) {
               <option value="Consultoria em TI">Consultoria em TI</option>
             </select>
 
-            <select name="timeline" value={formData.timeline} onChange={handleChange}>
+            <select name="timeline" aria-label="Prazo desejado" value={formData.timeline} onChange={handleChange}>
               <option value="">Prazo desejado</option>
               <option value="Imediato">Imediato</option>
               <option value="1 a 3 meses">1 a 3 meses</option>
@@ -182,7 +184,7 @@ function Contact({ variant = 'section' }) {
             </select>
           </div>
 
-          <select name="budget" value={formData.budget} onChange={handleChange}>
+          <select name="budget" aria-label="Faixa de investimento" value={formData.budget} onChange={handleChange}>
             <option value="">Faixa de investimento (opcional)</option>
             <option value="Até R$ 5 mil">Até R$ 5 mil</option>
             <option value="R$ 5 mil a R$ 20 mil">R$ 5 mil a R$ 20 mil</option>
@@ -193,6 +195,8 @@ function Contact({ variant = 'section' }) {
             type="email"
             name="email"
             placeholder="Seu e-mail"
+            aria-label="Seu e-mail"
+            autoComplete="email"
             value={formData.email}
             onChange={handleChange}
             required
@@ -202,6 +206,7 @@ function Contact({ variant = 'section' }) {
             type="text"
             name="subject"
             placeholder="Assunto"
+            aria-label="Assunto"
             value={formData.subject}
             onChange={handleChange}
             required
@@ -210,6 +215,7 @@ function Contact({ variant = 'section' }) {
           <textarea
             name="message"
             placeholder="Conte um pouco sobre seu projeto..."
+            aria-label="Conte um pouco sobre seu projeto"
             value={formData.message}
             onChange={handleChange}
             required
@@ -217,13 +223,13 @@ function Contact({ variant = 'section' }) {
           />
 
           {successMessage && (
-            <div className="contact-success">
+            <div className="contact-success" role="status" aria-live="polite">
               {successMessage}
             </div>
           )}
 
           {errorMessage && (
-            <div className="contact-error">
+            <div className="contact-error" role="alert">
               {errorMessage}
             </div>
           )}

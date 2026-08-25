@@ -11,10 +11,17 @@ function Projects({ variant = 'section' }) {
   const [retryKey, setRetryKey] = useState(0)
 
   useEffect(() => {
+    const controller = new AbortController()
+    const timeoutId = window.setTimeout(() => controller.abort(), 10000)
+
     const fetchProjects = async () => {
+      setLoading(true)
+      setError('')
+
       try {
         const response = await fetch(
-          `${API_URL}/projects/public`
+          `${API_URL}/projects/public`,
+          { signal: controller.signal }
         )
 
         const data = await response.json()
@@ -28,6 +35,11 @@ function Projects({ variant = 'section' }) {
 
         setProjects(data.projects || [])
       } catch (error) {
+        if (error.name === 'AbortError') {
+          setError('A resposta demorou mais que o esperado. Tente novamente.')
+          return
+        }
+
         console.error(
           'Erro ao buscar projetos:',
           error
@@ -42,7 +54,16 @@ function Projects({ variant = 'section' }) {
     }
 
     fetchProjects()
+
+    return () => {
+      window.clearTimeout(timeoutId)
+      controller.abort()
+    }
   }, [retryKey])
+
+  const retryProjects = () => {
+    setRetryKey((value) => value + 1)
+  }
 
   const categories = [...new Set(
     projects.map((project) => project.category).filter(Boolean)
@@ -83,7 +104,7 @@ function Projects({ variant = 'section' }) {
       {error && (
         <div className="projects-status">
           {error}
-          <button type="button" onClick={() => setRetryKey((value) => value + 1)}>
+          <button type="button" onClick={retryProjects}>
             Tentar novamente
           </button>
         </div>

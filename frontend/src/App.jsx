@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 
 import Navbar from './components/Navbar'
@@ -25,6 +25,34 @@ function App() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [location.pathname])
+
+  useEffect(() => {
+    const routeMetadata = [
+      ['/', 'TKS Technology Solutions | Tecnologia para crescer', 'Produtos digitais, automações e segurança para empresas que precisam crescer com controle.'],
+      ['/sobre', 'Sobre a TKS | Technology Solutions', 'Conheça a TKS e nossa forma de transformar desafios tecnológicos em resultados concretos.'],
+      ['/servicos', 'Serviços de Tecnologia, IA e Segurança | TKS', 'Desenvolvimento, inteligência artificial, automações e segurança para empresas.'],
+      ['/projetos', 'Projetos Digitais e Sistemas | TKS', 'Conheça projetos digitais, sistemas e soluções desenvolvidos pela TKS.'],
+      ['/contato', 'Fale com a TKS', 'Compartilhe seu desafio e encontre uma direção concreta para o próximo passo.'],
+      ['/processo', 'Como Atuamos | TKS', 'Um processo claro para transformar desafios complexos em soluções digitais eficientes.'],
+      ['/tks-al', 'TKS AL | Inteligência Executiva', 'Diagnóstico estratégico, priorização e orientação executiva para acelerar decisões.'],
+    ]
+
+    const metadata = routeMetadata.find(([path]) =>
+      path === location.pathname || (path !== '/' && location.pathname.startsWith(`${path}/`))
+    ) || routeMetadata[0]
+
+    document.title = metadata[1]
+
+    let description = document.querySelector('meta[name="description"]')
+
+    if (!description) {
+      description = document.createElement('meta')
+      description.name = 'description'
+      document.head.appendChild(description)
+    }
+
+    description.content = metadata[2]
   }, [location.pathname])
 
   return (

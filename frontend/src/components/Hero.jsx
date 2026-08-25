@@ -35,11 +35,11 @@ function Hero() {
             href="#servicos"
             className="primary-button"
           >
-            Solicitar diagnóstico
+            Falar sobre meu projeto
           </a>
 
           <a
-            href="#contato"
+            href="#processo"
             className="secondary-button"
           >
             Ver como atuamos
