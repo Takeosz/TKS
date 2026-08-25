@@ -250,6 +250,45 @@ textarea {
   letter-spacing: -0.05em;
 }
 
+.dashboard-sync-status {
+  display: block;
+  margin-top: 8px;
+  color: var(--dashboard-muted);
+  font-size: 11px;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dashboard-refresh-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 13px;
+  border: 1px solid rgba(123, 220, 240, 0.2);
+  border-radius: 12px;
+  background: rgba(123, 220, 240, 0.06);
+  color: var(--dashboard-accent);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.dashboard-refresh-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(123, 220, 240, 0.45);
+  background: rgba(123, 220, 240, 0.12);
+}
+
+.dashboard-refresh-button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
 .topbar-account {
   display: flex;
   align-items: center;
@@ -1235,6 +1274,15 @@ textarea {
 
   .dashboard-topbar {
     padding-top: 80px;
+  }
+
+  .topbar-actions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+
+  .dashboard-refresh-button {
+    justify-content: center;
   }
 
   .section-heading {

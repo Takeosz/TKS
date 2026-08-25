@@ -73,6 +73,8 @@ function DashboardPage() {
 
   const [leads, setLeads] = useState([])
   const [dashboardMetrics, setDashboardMetrics] = useState(null)
+  const [lastDashboardUpdate, setLastDashboardUpdate] = useState(null)
+  const [refreshingDashboard, setRefreshingDashboard] = useState(false)
   const [leadSearch, setLeadSearch] = useState('')
   const [leadStatus, setLeadStatus] = useState('')
   const [loadingLeads, setLoadingLeads] = useState(false)
@@ -805,6 +807,21 @@ function DashboardPage() {
     } catch (error) {
       console.error('Erro ao buscar métricas:', error)
     }
+  }
+
+  const refreshDashboard = async () => {
+    setRefreshingDashboard(true)
+
+    await Promise.allSettled([
+      fetchProjects(),
+      fetchServices(),
+      fetchMessages(),
+      fetchUsers(),
+      fetchDashboardMetrics(),
+    ])
+
+    setLastDashboardUpdate(new Date())
+    setRefreshingDashboard(false)
   }
 
   const handleProfileSave = async (event) => {
@@ -3318,8 +3335,9 @@ function DashboardPage() {
             (previous) => !previous
           )
         }
-        aria-label="Abrir menu"
+        aria-label={sidebarOpen ? 'Fechar menu' : 'Abrir menu'}
         aria-expanded={sidebarOpen}
+        aria-controls="dashboard-navigation"
       >
         ☰
       </button>
@@ -3334,6 +3352,7 @@ function DashboardPage() {
       )}
 
       <aside
+        id="dashboard-navigation"
         className={`dashboard-sidebar ${
           sidebarOpen ? 'open' : ''
         }`}
@@ -3429,9 +3448,26 @@ function DashboardPage() {
                       item.id === activeSection
                   )?.label}
             </h1>
+
+            <span className="dashboard-sync-status">
+              {lastDashboardUpdate
+                ? `Atualizado às ${lastDashboardUpdate.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`
+                : 'Sincronização automática ativa'}
+            </span>
           </div>
 
-          <div className="topbar-account">
+          <div className="topbar-actions">
+            <button
+              className="dashboard-refresh-button"
+              type="button"
+              onClick={refreshDashboard}
+              disabled={refreshingDashboard}
+            >
+              <span aria-hidden="true">↻</span>
+              {refreshingDashboard ? 'Atualizando...' : 'Atualizar dados'}
+            </button>
+
+            <div className="topbar-account">
             <div className="topbar-avatar">
               {user?.avatar_url ? <img src={user.avatar_url} alt="" /> : (user?.name || 'U').charAt(0).toUpperCase()}
             </div>
@@ -3445,6 +3481,7 @@ function DashboardPage() {
                 {user?.email || ''}
               </span>
             </div>
+          </div>
           </div>
         </header>
 
