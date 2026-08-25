@@ -1,0 +1,43 @@
+name: TKS CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            frontend/package-lock.json
+            backend/package-lock.json
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install frontend dependencies
+        run: npm ci --prefix frontend
+
+      - name: Install backend dependencies
+        run: npm ci --prefix backend
+
+      - name: Check backend syntax
+        run: node --check backend/src/server.js
+
+      - name: Lint frontend
+        run: npm --prefix frontend run lint
+
+      - name: Build frontend
+        run: npm --prefix frontend run build

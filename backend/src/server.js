@@ -20,6 +20,7 @@ const {
   setSocketIO,
 } = require('./controllers/messageController')
 const initializeDatabase = require('./database/initialize')
+const pool = require('./database/connection')
 
 const app = express()
 
@@ -191,6 +192,28 @@ app.get('/', (req, res) => {
     message:
       'TKS Technology Solutions API funcionando.',
   })
+})
+
+app.get('/health', async (req, res) => {
+  try {
+    await pool.query('SELECT 1')
+
+    return res.status(200).json({
+      success: true,
+      service: 'tks-api',
+      database: 'connected',
+      timestamp: new Date().toISOString(),
+    })
+  } catch (error) {
+    console.error('Health check falhou:', error)
+
+    return res.status(503).json({
+      success: false,
+      service: 'tks-api',
+      database: 'unavailable',
+      timestamp: new Date().toISOString(),
+    })
+  }
 })
 
 // =========================
