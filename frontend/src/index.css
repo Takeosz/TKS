@@ -443,6 +443,58 @@ select:focus-visible {
   background: rgba(5, 7, 11, 0.08);
 }
 
+.hero-interactive-visual {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.72;
+}
+
+.hero-visual-grid {
+  position: absolute;
+  inset: 8% 5% 7% 45%;
+  background-image:
+    linear-gradient(rgba(119, 216, 232, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(119, 216, 232, 0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(90deg, transparent, #000 26%, #000 76%, transparent);
+  transform: translate3d(var(--hero-offset-x, 0px), var(--hero-offset-y, 0px), 0);
+  transition: transform 0.35s ease-out;
+}
+
+.hero-visual-frame {
+  position: absolute;
+  border: 1px solid rgba(119, 216, 232, 0.16);
+  transform: translate3d(var(--hero-offset-x, 0px), var(--hero-offset-y, 0px), 0) rotate(-18deg);
+  transition: transform 0.5s ease-out;
+}
+
+.hero-visual-frame-large {
+  top: 20%;
+  right: -8%;
+  width: 52%;
+  height: 55%;
+}
+
+.hero-visual-frame-small {
+  top: 38%;
+  right: 10%;
+  width: 30%;
+  height: 30%;
+  border-color: rgba(142, 163, 255, 0.2);
+  transition-delay: 60ms;
+}
+
+.hero-pointer-light {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle 240px at var(--hero-pointer-x, 76%) var(--hero-pointer-y, 42%), rgba(119, 216, 232, 0.13), transparent 72%);
+  opacity: 0.8;
+  transition: opacity 0.35s ease;
+}
+
 .hero-content {
   position: relative;
 
@@ -2314,6 +2366,15 @@ select:focus-visible {
   .reveal-section {
     opacity: 1;
     transform: none;
+  }
+
+  .hero-visual-grid,
+  .hero-visual-frame {
+    transform: none;
+  }
+
+  .hero-pointer-light {
+    opacity: 0.35;
   }
 }
 
