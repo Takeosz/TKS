@@ -65,8 +65,29 @@ body {
 }
 
 .dashboard-layout {
-  filter: saturate(0) !important;
   background: #050505 !important;
+}
+
+.dashboard-layout img,
+.dashboard-layout .profile-preview img,
+.dashboard-layout .project-image,
+.dashboard-layout .sidebar-avatar img,
+.dashboard-layout .topbar-avatar img,
+.dashboard-layout .message-avatar img,
+.dashboard-layout .user-avatar img {
+  filter: none !important;
+}
+
+.dashboard-layout .success-message,
+.dashboard-layout .status-active,
+.dashboard-layout .status-active,
+.dashboard-layout .status-pill.status-won {
+  color: #65d391 !important;
+}
+
+.dashboard-layout .success-message {
+  border-color: rgba(101, 211, 145, 0.28) !important;
+  background: rgba(101, 211, 145, 0.1) !important;
 }
 
 .dashboard-layout .dashboard-sidebar,

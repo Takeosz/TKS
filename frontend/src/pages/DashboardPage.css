@@ -9,9 +9,9 @@
   --dashboard-text: #edf6ff;
   --dashboard-accent: #d0d0d0;
   --dashboard-accent-2: #969696;
-  --dashboard-success: #c8c8c8;
-  --dashboard-warning: #a9a9a9;
-  --dashboard-danger: #858585;
+  --dashboard-success: #65d391;
+  --dashboard-warning: #d9b85f;
+  --dashboard-danger: #e97986;
 }
 
 * {
@@ -28,7 +28,6 @@ textarea {
 .dashboard-layout {
   display: flex;
   min-height: 100vh;
-  filter: saturate(0);
   background:
     radial-gradient(circle at top left, rgba(123, 220, 240, 0.12), transparent 20%),
     radial-gradient(circle at bottom right, rgba(142, 163, 255, 0.14), transparent 24%),
