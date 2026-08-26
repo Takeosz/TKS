@@ -45,7 +45,7 @@ const startOAuth = (req, res) => {
   const provider = providers[req.params.provider]
 
   if (!provider || !provider.clientId() || !provider.clientSecret()) {
-    return res.status(503).json({ success: false, message: 'Este login social ainda não foi configurado.' })
+    return res.redirect(`${getFrontendUrl()}/login?oauth_error=${encodeURIComponent('Este login social ainda não foi configurado. Use e-mail e senha ou configure o provedor no Render.')}`)
   }
 
   const state = crypto.randomBytes(24).toString('hex')

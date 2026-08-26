@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { useAuth } from '../context/useAuth'
 import './LoginPage.css'
 
@@ -11,9 +11,18 @@ function LoginPage() {
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
+  const [searchParams] = useSearchParams()
 
   const { login } = useAuth()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const oauthError = searchParams.get('oauth_error')
+
+    if (oauthError) {
+      setMessage(oauthError)
+    }
+  }, [searchParams])
 
   const handleLogin = async (e) => {
     e.preventDefault()
