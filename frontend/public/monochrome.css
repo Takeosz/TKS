@@ -64,6 +64,25 @@ body {
   color: #202020 !important;
 }
 
+.dashboard-layout {
+  filter: saturate(0) !important;
+  background: #050505 !important;
+}
+
+.dashboard-layout .dashboard-sidebar,
+.dashboard-layout .dashboard-topbar,
+.dashboard-layout .content-card,
+.dashboard-layout .stat-card,
+.dashboard-layout .dashboard-welcome,
+.dashboard-layout .lead-column,
+.dashboard-layout .lead-card,
+.dashboard-layout .project-item,
+.dashboard-layout .message-item,
+.dashboard-layout .user-row {
+  background-color: #111111 !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
+
 html {
   overflow-x: clip;
 }
