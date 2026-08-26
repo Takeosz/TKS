@@ -329,7 +329,7 @@ select:focus-visible {
   bottom: -9px;
   width: 0;
   height: 1px;
-  background: linear-gradient(90deg, rgba(119, 216, 232, 0), rgba(119, 216, 232, 1), rgba(111, 140, 255, 0));
+  background: linear-gradient(90deg, rgba(245, 245, 245, 0), rgba(245, 245, 245, 0.9), rgba(189, 189, 189, 0));
   transition: width 0.25s ease;
 }
 
@@ -350,7 +350,7 @@ select:focus-visible {
 
 .desktop-menu a.active::after {
   width: 100%;
-  background: linear-gradient(90deg, rgba(119, 216, 232, 0), rgba(119, 216, 232, 1), rgba(111, 140, 255, 0));
+  background: linear-gradient(90deg, rgba(245, 245, 245, 0), rgba(245, 245, 245, 0.9), rgba(189, 189, 189, 0));
 }
 
 .navbar-button,

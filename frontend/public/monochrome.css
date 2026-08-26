@@ -107,6 +107,11 @@ html {
   color: #202020 !important;
 }
 
+.desktop-menu a::after,
+.desktop-menu a.active::after {
+  background: linear-gradient(90deg, rgba(245, 245, 245, 0), rgba(245, 245, 245, 0.9), rgba(189, 189, 189, 0)) !important;
+}
+
 @media (max-width: 600px) {
   .footer-social {
     justify-items: center;
