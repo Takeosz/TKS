@@ -4434,6 +4434,53 @@ select:focus-visible {
   color: #202020 !important;
 }
 
+/* Neutraliza gradientes legados sem alterar estrutura ou conteúdo. */
+.hero,
+.proof-section,
+.metrics-section,
+.benefits-section,
+.testimonials-section,
+.about-section,
+.projects-section,
+.services-section,
+.process-section,
+.cases-section,
+.faq-section,
+.final-cta-section,
+.contact-section,
+.tks-ai-section,
+.footer,
+.service-card,
+.project-card,
+.case-card,
+.benefit-card,
+.metric-card,
+.testimonial-card,
+.tks-ai-value-card,
+.tks-ai-conversation-panel,
+.tks-ai-side-panel,
+.tks-ai-highlight-card,
+.tks-ai-metric-card {
+  filter: grayscale(1);
+}
+
+.hero,
+.proof-section,
+.metrics-section,
+.benefits-section,
+.testimonials-section,
+.about-section,
+.projects-section,
+.services-section,
+.process-section,
+.cases-section,
+.faq-section,
+.contact-section,
+.tks-ai-section,
+.footer {
+  background-color: var(--tks-black) !important;
+}
+
 .client-area-card-highlight strong {
   display: block;
   margin-top: 18px;

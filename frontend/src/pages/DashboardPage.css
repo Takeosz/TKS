@@ -28,6 +28,7 @@ textarea {
 .dashboard-layout {
   display: flex;
   min-height: 100vh;
+  filter: grayscale(1);
   background:
     radial-gradient(circle at top left, rgba(123, 220, 240, 0.12), transparent 20%),
     radial-gradient(circle at bottom right, rgba(142, 163, 255, 0.14), transparent 24%),
