@@ -2652,7 +2652,7 @@ select:focus-visible {
 
 .whatsapp-button {
   position: fixed;
-  right: 30px;
+  left: 30px;
   bottom: 26px;
   z-index: 900;
   display: inline-flex;
@@ -3963,7 +3963,12 @@ select:focus-visible {
   }
 }
 
-.whatsapp-button { right: 16px; bottom: 16px; }
+.whatsapp-button {
+  left: 16px;
+  bottom: 16px;
+  padding: 11px 13px;
+  font-size: 11px;
+}
 
 .client-area-page {
   max-width: 1280px;
