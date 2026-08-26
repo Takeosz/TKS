@@ -1,5 +1,12 @@
 /* =========================
-   RESET
+  TKS MOTION SYSTEM
+  tks-reveal: entrada por rolagem
+  tks-fade-up: entrada suave
+  tks-dataflow: grade técnica
+  tks-hologram: moldura tecnológica
+  tks-glow: luz interativa
+  tks-hover: estados de ponteiro
+  tks-parallax: movimento ligado à rolagem
 ========================= */
 
 :root {
@@ -423,13 +430,13 @@ select:focus-visible {
   transition: transform 0.15s linear;
 }
 
-.reveal-section {
+.tks-reveal {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.75s ease, transform 0.75s ease;
 }
 
-.reveal-section.is-visible {
+.tks-reveal--visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -503,7 +510,7 @@ select:focus-visible {
   width: min(100%, 780px);
   max-width: 780px;
 
-  animation: fadeUp 0.8s ease forwards;
+  animation: tks-fade-up 0.8s ease forwards;
 }
 
 .hero-tag {
@@ -2363,7 +2370,7 @@ select:focus-visible {
     transition-duration: 0.01ms !important;
   }
 
-  .reveal-section {
+  .tks-reveal {
     opacity: 1;
     transform: none;
   }
@@ -2991,7 +2998,7 @@ select:focus-visible {
    ANIMATIONS
 ========================= */
 
-@keyframes fadeUp {
+@keyframes tks-fade-up {
   from {
     opacity: 0;
     transform: translateY(25px);
@@ -3005,7 +3012,7 @@ select:focus-visible {
 
 .service-card,
 .project-card {
-  animation: fadeUp 0.6s ease both;
+  animation: tks-fade-up 0.6s ease both;
 }
 
 /* =========================
@@ -3658,10 +3665,10 @@ select:focus-visible {
   border-radius: 50%;
   background: linear-gradient(135deg, #8cfac2, #77d8e8);
   box-shadow: 0 0 16px rgba(124, 254, 197, 0.95);
-  animation: tksPulse 1.8s infinite ease-in-out;
+  animation: tks-loading-pulse 1.8s infinite ease-in-out;
 }
 
-@keyframes tksPulse {
+@keyframes tks-loading-pulse {
   0%, 100% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.25); opacity: 0.8; }
 }

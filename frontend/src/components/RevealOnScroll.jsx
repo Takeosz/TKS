@@ -27,7 +27,7 @@ function RevealOnScroll({ children }) {
   }, [])
 
   return (
-    <div ref={elementRef} className={`reveal-section ${isVisible ? 'is-visible' : ''}`}>
+    <div ref={elementRef} className={`tks-reveal ${isVisible ? 'tks-reveal--visible' : ''}`}>
       {children}
     </div>
   )

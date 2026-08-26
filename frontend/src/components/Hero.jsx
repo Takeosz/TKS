@@ -34,10 +34,10 @@ function Hero() {
       <div className="hero-overlay"></div>
 
       <div className="hero-interactive-visual" aria-hidden="true">
-        <div className="hero-visual-grid"></div>
-        <div className="hero-visual-frame hero-visual-frame-large"></div>
-        <div className="hero-visual-frame hero-visual-frame-small"></div>
-        <div className="hero-pointer-light"></div>
+        <div className="hero-visual-grid tks-dataflow"></div>
+        <div className="hero-visual-frame hero-visual-frame-large tks-hologram"></div>
+        <div className="hero-visual-frame hero-visual-frame-small tks-hologram"></div>
+        <div className="hero-pointer-light tks-glow"></div>
       </div>
 
       <div className="hero-content">
