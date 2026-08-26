@@ -39,6 +39,9 @@ html {
 .contact-section,
 .tks-ai-section,
 .footer,
+.services-page,
+.services-page-header,
+.services-page-content,
 .hero-background,
 .service-card,
 .project-card,
@@ -69,6 +72,39 @@ html {
 .tks-ai-section,
 .footer {
   background: #050505 !important;
+}
+
+.services-page,
+.services-page-header,
+.services-page-content,
+.services-page .service-card,
+.services-page .service-card::before,
+.services-page .service-card-topline,
+.services-page .service-icon,
+.services-page .service-card-link,
+.services-page-header::after {
+  filter: saturate(0) !important;
+}
+
+.services-page {
+  background: #050505 !important;
+}
+
+.services-page-header,
+.services-page .service-card {
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  background: #111111 !important;
+}
+
+.services-page-header::after {
+  background: linear-gradient(90deg, #f5f5f5, transparent) !important;
+}
+
+.services-page .service-card-topline,
+.services-page .service-icon,
+.services-page .service-card-link {
+  color: #d0d0d0 !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
 }
 
 .navbar-ai-button,

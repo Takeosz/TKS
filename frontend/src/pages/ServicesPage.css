@@ -8,6 +8,7 @@
     radial-gradient(circle at left center, rgba(119, 216, 232, 0.06), transparent 28%),
     linear-gradient(180deg, #05070b 0%, #090d13 100%);
   color: #ffffff;
+  filter: saturate(0);
 }
 
 .services-page-header {
