@@ -7,6 +7,10 @@
   tks-glow: luz interativa
   tks-hover: estados de ponteiro
   tks-parallax: movimento ligado à rolagem
+  tks-spotlight: holofote que segue o cursor
+  tks-tilt: inclinação 3D interativa
+  tks-magnetic: atração magnética de botões
+  tks-shine: reflexo de luz em botões
 ========================= */
 
 :root {
@@ -450,6 +454,187 @@ select:focus-visible {
 .tks-reveal--visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* =========================
+   SPOTLIGHT, TILT 3D & SHINE FX
+========================= */
+
+.service-card,
+.project-card,
+.case-card,
+.benefit-card,
+.metric-card,
+.testimonial-card,
+.tks-ai-value-card,
+.tks-ai-highlight-card,
+.tks-ai-metric-card,
+.proof-section,
+.process-step {
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+/* Spotlight light following cursor on cards */
+.service-card::after,
+.case-card::after,
+.benefit-card::after,
+.metric-card::after,
+.testimonial-card::after,
+.tks-ai-value-card::after,
+.tks-ai-highlight-card::after,
+.tks-ai-metric-card::after {
+  content: "";
+  position: absolute;
+  top: var(--mouse-y, 50%);
+  left: var(--mouse-x, 50%);
+  width: 320px;
+  height: 320px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(119, 216, 232, 0.25) 0%,
+    rgba(111, 140, 255, 0.1) 45%,
+    transparent 70%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.service-card:hover::after,
+.service-card.is-hovered::after,
+.case-card:hover::after,
+.case-card.is-hovered::after,
+.benefit-card:hover::after,
+.benefit-card.is-hovered::after,
+.metric-card:hover::after,
+.metric-card.is-hovered::after,
+.testimonial-card:hover::after,
+.testimonial-card.is-hovered::after,
+.tks-ai-value-card:hover::after,
+.tks-ai-value-card.is-hovered::after,
+.tks-ai-highlight-card:hover::after,
+.tks-ai-highlight-card.is-hovered::after,
+.tks-ai-metric-card:hover::after,
+.tks-ai-metric-card.is-hovered::after {
+  opacity: 1;
+}
+
+/* 3D Tilt + Glow + Lift on Hover */
+.service-card:hover,
+.service-card.is-hovered,
+.project-card:hover,
+.project-card.is-hovered,
+.case-card:hover,
+.case-card.is-hovered,
+.benefit-card:hover,
+.benefit-card.is-hovered,
+.metric-card:hover,
+.metric-card.is-hovered,
+.testimonial-card:hover,
+.testimonial-card.is-hovered,
+.tks-ai-value-card:hover,
+.tks-ai-value-card.is-hovered,
+.tks-ai-highlight-card:hover,
+.tks-ai-highlight-card.is-hovered,
+.tks-ai-metric-card:hover,
+.tks-ai-metric-card.is-hovered,
+.proof-section:hover,
+.proof-section.is-hovered,
+.process-step:hover,
+.process-step.is-hovered {
+  transform: perspective(1000px) rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg)) translateY(-7px);
+  border-color: rgba(119, 216, 232, 0.45) !important;
+  box-shadow:
+    0 22px 52px rgba(0, 0, 0, 0.4),
+    0 0 32px rgba(119, 216, 232, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Buttons: Magnetic Hover + Shine Effect */
+.primary-button,
+.secondary-button,
+.navbar-button,
+.navbar-ai-button,
+.whatsapp-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.primary-button:hover,
+.primary-button.is-hovered,
+.secondary-button:hover,
+.secondary-button.is-hovered,
+.navbar-button:hover,
+.navbar-button.is-hovered,
+.navbar-ai-button:hover,
+.navbar-ai-button.is-hovered,
+.whatsapp-button:hover,
+.whatsapp-button.is-hovered {
+  transform: translate3d(var(--magnetic-x, 0px), calc(-3px + var(--magnetic-y, 0px)), 0);
+}
+
+.primary-button::after,
+.secondary-button::after,
+.navbar-button::after,
+.navbar-ai-button::after,
+.whatsapp-button::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -70%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.32) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.primary-button:hover::after,
+.primary-button.is-hovered::after,
+.secondary-button:hover::after,
+.secondary-button.is-hovered::after,
+.navbar-button:hover::after,
+.navbar-button.is-hovered::after,
+.navbar-ai-button:hover::after,
+.navbar-ai-button.is-hovered::after,
+.whatsapp-button:hover::after,
+.whatsapp-button.is-hovered::after {
+  opacity: 1;
+  animation: tks-shine 0.85s ease-in-out forwards;
+}
+
+@keyframes tks-shine {
+  0% {
+    left: -70%;
+  }
+  100% {
+    left: 150%;
+  }
 }
 
 .hero-overlay {

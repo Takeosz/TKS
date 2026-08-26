@@ -23,6 +23,7 @@ import PrivacyPage from './pages/PrivacyPage'
 import TermsPage from './pages/TermsPage'
 import ScrollTools from './components/ScrollTools'
 import OAuthCallbackPage from './pages/OAuthCallbackPage'
+import InteractiveFX from './components/InteractiveFX'
 
 function App() {
   const location = useLocation()
@@ -62,6 +63,7 @@ function App() {
   return (
     <>
       <ScrollTools />
+      <InteractiveFX />
       <Routes>
 
         {/* SITE PÚBLICO */}
