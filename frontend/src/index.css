@@ -4376,7 +4376,7 @@ select:focus-visible {
 .hero-visual-grid,
 .hero-visual-frame,
 .hero-pointer-light {
-  filter: grayscale(1);
+  filter: saturate(0);
 }
 
 .navbar-ai-button,
@@ -4461,7 +4461,7 @@ select:focus-visible {
 .tks-ai-side-panel,
 .tks-ai-highlight-card,
 .tks-ai-metric-card {
-  filter: grayscale(1);
+  filter: saturate(0);
 }
 
 .hero,
