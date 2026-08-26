@@ -7,11 +7,11 @@
   --dashboard-border: rgba(163, 190, 255, 0.15);
   --dashboard-muted: #95a9bf;
   --dashboard-text: #edf6ff;
-  --dashboard-accent: #7bdcf0;
-  --dashboard-accent-2: #8ea3ff;
-  --dashboard-success: #7ef0bb;
-  --dashboard-warning: #ffd88a;
-  --dashboard-danger: #ff779a;
+  --dashboard-accent: #d0d0d0;
+  --dashboard-accent-2: #969696;
+  --dashboard-success: #c8c8c8;
+  --dashboard-warning: #a9a9a9;
+  --dashboard-danger: #858585;
 }
 
 * {
