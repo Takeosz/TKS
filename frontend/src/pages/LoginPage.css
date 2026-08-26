@@ -11,6 +11,7 @@
     radial-gradient(circle at 18% 18%, rgba(111, 140, 255, 0.16), transparent 28%),
     radial-gradient(circle at 85% 80%, rgba(119, 216, 232, 0.08), transparent 25%),
     linear-gradient(145deg, #05070b 0%, #0b1018 58%, #07090e 100%);
+  filter: saturate(0);
 }
 
 .login-page::before,
@@ -44,7 +45,7 @@
   box-sizing: border-box;
   position: relative;
   z-index: 1;
-  background: linear-gradient(155deg, rgba(19, 27, 40, 0.94), rgba(8, 12, 19, 0.97));
+  background: linear-gradient(155deg, rgba(24, 24, 24, 0.96), rgba(8, 8, 8, 0.98));
   border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 22px;
   box-shadow: 0 28px 90px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -59,7 +60,7 @@
   left: 48px;
   right: 48px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #77d8e8, #6f8cff, transparent);
+  background: linear-gradient(90deg, transparent, #f5f5f5, #777777, transparent);
 }
 
 .login-header {
@@ -78,7 +79,7 @@
 .login-subtitle {
   display: block;
   margin-top: 8px;
-  color: #77d8e8;
+  color: #bdbdbd;
   font-size: 9px;
   letter-spacing: 3px;
 }
@@ -135,9 +136,9 @@
 }
 
 .login-field input:focus {
-  border-color: #77d8e8;
+  border-color: #d0d0d0;
   background: rgba(4, 8, 14, 0.92);
-  box-shadow: 0 0 0 4px rgba(119, 216, 232, 0.08);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08);
 }
 
 .login-forgot {
@@ -149,7 +150,7 @@
 .login-forgot a,
 .login-register a,
 .login-back {
-  color: #9fc5ff;
+  color: #bdbdbd;
   font-size: 12px;
   transition: color 0.2s ease;
 }
@@ -157,15 +158,15 @@
 .login-forgot a:hover,
 .login-register a:hover,
 .login-back:hover {
-  color: #77d8e8;
+  color: #fff;
 }
 
 .login-button {
   width: 100%;
   padding: 15px;
   margin-top: 8px;
-  background: linear-gradient(135deg, #f8fbff 0%, #bcd1ff 100%);
-  color: #07101e;
+  background: linear-gradient(135deg, #f5f5f5 0%, #bdbdbd 100%);
+  color: #090909;
   border: none;
   border-radius: 12px;
   font-size: 13px;
@@ -179,7 +180,7 @@
 .login-button:hover {
   filter: brightness(1.05);
   transform: translateY(-2px);
-  box-shadow: 0 14px 26px rgba(111, 140, 255, 0.22);
+  box-shadow: 0 14px 26px rgba(255, 255, 255, 0.16);
 }
 
 .login-button:disabled {
