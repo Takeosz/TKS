@@ -3660,9 +3660,9 @@ select:focus-visible {
   }
 
   .mobile-menu a.active {
-    color: #77d8e8;
+    color: #f5f5f5;
     padding-left: 10px;
-    border-left: 1px solid rgba(119, 216, 232, 0.7);
+    border-left: 1px solid rgba(245, 245, 245, 0.75);
   }
 }
 
