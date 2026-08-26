@@ -6,6 +6,7 @@ const {
     login,
     resetPassword,
 } = require("../controllers/authController");
+const { startOAuth, oauthCallback } = require('../controllers/oauthController')
 
 const router = express.Router();
 
@@ -34,5 +35,8 @@ router.post("/login", login);
 // =========================
 
 router.post("/reset-password", recoveryRateLimit, resetPassword);
+
+router.get('/:provider', startOAuth)
+router.get('/:provider/callback', oauthCallback)
 
 module.exports = router;

@@ -63,6 +63,18 @@ const initializeDatabase = async () => {
   `)
 
   await pool.query(`
+    ALTER TABLE users
+    ADD COLUMN IF NOT EXISTS provider VARCHAR(30),
+    ADD COLUMN IF NOT EXISTS provider_id VARCHAR(180)
+  `)
+
+  await pool.query(`
+    CREATE UNIQUE INDEX IF NOT EXISTS users_provider_identity_idx
+    ON users (provider, provider_id)
+    WHERE provider IS NOT NULL AND provider_id IS NOT NULL
+  `)
+
+  await pool.query(`
     ALTER TABLE projects
     ADD COLUMN IF NOT EXISTS category VARCHAR(80)
   `)

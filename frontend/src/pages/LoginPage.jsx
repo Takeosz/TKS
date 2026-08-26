@@ -4,6 +4,7 @@ import { useAuth } from '../context/useAuth'
 import './LoginPage.css'
 
 import { API_URL } from '../config/api'
+import SocialAuthButtons from '../components/SocialAuthButtons'
 
 function LoginPage() {
   const [email, setEmail] = useState('')
@@ -134,6 +135,8 @@ function LoginPage() {
           </button>
 
         </form>
+
+        <SocialAuthButtons />
 
         {message && (
           <p className="login-message">

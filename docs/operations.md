@@ -35,3 +35,17 @@ https://tks-api.onrender.com/health
 ```
 
 Use alertas para respostas diferentes de `200`, latência alta e indisponibilidade consecutiva. O endpoint retorna `503` quando o banco não está disponível.
+
+## Login social
+
+Configure no Render as variáveis `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `FACEBOOK_CLIENT_ID` e `FACEBOOK_CLIENT_SECRET`.
+
+Cadastre estas URLs de callback nos respectivos provedores:
+
+```text
+https://tks-api.onrender.com/api/auth/google/callback
+https://tks-api.onrender.com/api/auth/github/callback
+https://tks-api.onrender.com/api/auth/facebook/callback
+```
+
+Defina também `BACKEND_URL=https://tks-api.onrender.com` e mantenha `FRONTEND_URL=https://tks-psi.vercel.app` no Render.

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import './LoginPage.css'
 
 import { API_URL } from '../config/api'
+import SocialAuthButtons from '../components/SocialAuthButtons'
 
 function RegisterPage() {
   const [name, setName] = useState('')
@@ -162,6 +163,8 @@ function RegisterPage() {
           </button>
 
         </form>
+
+        <SocialAuthButtons />
 
         {message && (
           <p className="login-message">

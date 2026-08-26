@@ -22,6 +22,7 @@ import ClientAreaPage from './pages/ClientAreaPage'
 import PrivacyPage from './pages/PrivacyPage'
 import TermsPage from './pages/TermsPage'
 import ScrollTools from './components/ScrollTools'
+import OAuthCallbackPage from './pages/OAuthCallbackPage'
 
 function App() {
   const location = useLocation()
@@ -144,6 +145,7 @@ function App() {
 
       <Route path="/privacidade" element={<PrivacyPage />} />
       <Route path="/termos" element={<TermsPage />} />
+      <Route path="/oauth/callback" element={<OAuthCallbackPage />} />
 
       <Route
         path="/processo"
